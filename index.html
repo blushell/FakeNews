@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Button with Shine Effect</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			/* Custom CSS for shine effect */
+			.button-with-shine::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -150%;
+				width: 50%;
+				height: 100%;
+				background: linear-gradient(
+					to right,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.4) 50%,
+					rgba(255, 255, 255, 0) 100%
+				);
+				transform: skewX(-45deg);
+				z-index: 1;
+			}
+
+			.button-with-shine:hover::before {
+				animation: shine 1s ease-in-out;
+			}
+
+			@keyframes shine {
+				from {
+					left: -150%;
+				}
+				to {
+					left: 150%;
+				}
+			}
+
+			.button-border::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				border-radius: 0.5rem; /* Matches button's border radius */
+				border: 2px solid transparent;
+				border-bottom-width: 6px;
+				border-color: #6b3dc3; /* Purple border */
+				pointer-events: none;
+				transition: border-color 0.3s, border-width 0.3s; /* Smooth transition */
+			}
+
+			.button-border:hover::after {
+				border-color: #8250ff; /* Brighter purple on hover */
+				border-bottom-width: 8px; /* Slightly thicker bottom border on hover */
+			}
+		</style>
+	</head>
+	<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+		<button
+			class="relative inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-white font-bold text-lg rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-lg button-with-shine button-border"
+		>
+			<span class="relative z-10">Get Redact</span>
+		</button>
+	</body>
+</html>
